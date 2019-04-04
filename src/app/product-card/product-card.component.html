@@ -1,0 +1,23 @@
+<div   class="card" >
+    <img class="card-img-top" [src]="item.imageUrl">
+      <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.price |currency:'USD':true}}</p>
+      </div>
+      <div class="card-footer">
+            <button *ngIf="product===0; else temp"  (click)="addToCard(item)" class="btn btn-secondary btn-block">Add To Cart</button>
+      </div>
+      <ng-template #temp>
+          <div class="row no-gutters">
+              <div class="col-2">
+                  <button class="btn btn-secondary btn-block" (click)="removeFromCard(item)">-</button>
+              </div>
+              <div class="col text-center">
+               {{product}} in card
+              </div>
+              <div class="col-2">
+                  <button  class="btn btn-secondary btn-block" (click)="addToCard(item)">+</button>
+              </div>
+          </div>
+      </ng-template>
+</div>

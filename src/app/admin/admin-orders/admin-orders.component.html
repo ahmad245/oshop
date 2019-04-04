@@ -1,0 +1,17 @@
+<h1>Orders</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of orders$|async as order" >
+      <td>{{item.shipping.name}}</td>
+      <td>{{item.dateCreated}}</td>
+      <td><a [routerLink]="['/details/',item.$key]">View</a></td>
+    </tr>
+  </tbody>
+</table>

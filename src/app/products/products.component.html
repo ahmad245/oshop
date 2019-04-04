@@ -1,0 +1,25 @@
+<div class="row">
+  <input (copy)="donat()" (paste)="donat()" type="search" class="form-control"
+    id="search" placeholder="Search"
+     name="search" #search    (keyup)="input(search.value)">
+</div>
+<div class="row">
+
+  <div class="col-3">
+   <app-product-filter [query]="query"></app-product-filter>
+  </div>
+
+  <div class="col">
+     <div class="row">
+      <ng-container *ngFor="let item of productFilter;let i=index">
+        <div class="col" >
+          <app-product-card [item]="item"></app-product-card>
+           
+        </div>
+        <div *ngIf="(i+1)%2===0"  class="w-100"></div>
+    </ng-container>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,57 @@
+<h1>Shopping Card</h1>
+<div class="col-10" *ngIf="card$|async as card"  >
+    <p>You have {{card.totalItems}} Items in Your Shopping Card 
+        <button [disabled]="card.totalItems==0" (click)="clearCard()" class="btn btn-danger btn-sm"> Clear Shopping Card</button></p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product</th>
+          <th style="text-align: center;width: 230px;">Quantity</th>
+          <th style="text-align: right;width: 200px;">Prices</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+          
+            <tr *ngFor="let item of card.productIdTest "   >
+                    <ng-container *ngIf="item.product|async as t">
+                        <td><div class="them" [style.backgroundImage]="'url(' + t.imageUrl + ')'" ></div></td>
+                        <td> {{t.title}}</td>
+                       
+                         <td>
+                            <button *ngIf="item.quantity===0; else temp"  (click)="addToCard(t)" class="btn btn-secondary btn-block">Add To Cart</button>
+                            <ng-template #temp>
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <button class="btn btn-secondary btn-block" (click)="removeFromCard(t)">-</button>
+                                    </div>
+                                    <div class="col text-center">
+                                    {{item.quantity}} in card
+                                    </div>
+                                    <div class="col-2">
+                                        <button  class="btn btn-secondary btn-block" (click)="addToCard(t)">+</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+             
+                         </td>
+                        <td style="text-align: right">{{t.price*item.quantity|currency:'USD':true}}</td>
+                    </ng-container>
+          
+         </tr> 
+      </tbody>
+      <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th style="text-align: right">{{card.totalPrice|currency:'USD':true}}</th>
+            <!-- <th>{{totalPrice}}</th> -->
+        </tr>
+           
+      </tfoot>
+     
+    </table>
+    <a [hidden]="card.totalItems==0" routerLink="/check-out" (click)="retunTo()" class="btn btn-primary">Check Out </a>
+</div>

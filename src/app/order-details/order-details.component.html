@@ -1,0 +1,11 @@
+<ul *ngIf="order"  class="list-group">
+  <li class="list-group-item">
+       {{order.dateCreated}}
+  </li>
+  <li class="list-group-item">
+      {{order.shipping?.name}}
+ </li>
+ <li *ngFor="let item of order?.items" class="list-group-item" >
+   {{item.product.title}}
+ </li>
+</ul>

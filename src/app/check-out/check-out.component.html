@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-6">
+    <form #form="ngForm" (ngSubmit)="save()">
+      <div class="form-group is-valid">
+        <label for="name">Name</label>
+        <input required [class.is-valid]="name.valid" id="name" name="name" #name="ngModel" [(ngModel)]="orders.name"  type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="name.invalid && name.touched" >
+             This Name Is Required..
+        </div>
+      </div>
+    
+    
+      <div class="form-group is-valid">
+        <label for="address1">Address</label>
+        <input required [class.is-valid]="address1.valid" id="address1" name="address1" #address1="ngModel" [(ngModel)]="orders.address1" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="address1.invalid && address1.touched" >
+          This Address1 Is Required..
+        </div>
+      </div>
+      <div class="form-group is-valid">
+          <label for="address2"></label>
+          <input required [class.is-valid]="address2.valid" id="address2" name="address" #address2="ngModel" [(ngModel)]="orders.address2" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="address2.touched && address2.invalid" >  
+            This Address2 Is Required..
+          </div>
+      </div>
+    
+      <div class="form-group is-valid">
+          <label for="city">City</label>
+          <input required [class.is-valid]="city.valid" id="city" name="city" #city="ngModel" [(ngModel)]="orders.city" type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="city.touched && city.invalid" > 
+           This City Is Required.. 
+          </div>
+        </div>
+    
+        <button  [disabled]="form.invalid"  >Place Order</button>
+        <!-- <button (click)="clear()" class="btn btn-danger btn-sm">Clear Shopping Card</button> -->
+
+      
+    </form>
+  </div>
+  <div class="col-6">
+    <app-shopping-card-summary [card]="card" ></app-shopping-card-summary>
+  </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div    class="card border-success mb-3">
+  <div class="card-header bg-transparent border-success">Order Summary</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">You Have {{card.totalItems}} In Your Card</h5>
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let item of card.productIdTest"  class="list-group-item" >
+           
+                {{item.quantity}} x {{item.productItem.title}}
+                <div class="float-right">
+                  {{item.quantity*item.productItem.price|currency:'USD':true}}
+                </div>
+           
+         
+          </li>
+      <!-- <li *ngFor="let item of card.productIdTest"  class="list-group-item" >
+        <ng-container *ngIf="item.product|async as t" >
+            {{item.quantity}} x {{t.title}}
+            <div class="float-right">
+              {{item.quantity*t.price|currency:'USD':true}}
+            </div>
+        </ng-container>
+     
+      </li> -->
+    </ul>
+  </div>
+  <div class="card-footer bg-transparent border-success">
+      Total
+      <div class="float-right">
+          {{card.totalPrice|currency:'USD':true}}
+      </div>
+  </div>
+</div>
